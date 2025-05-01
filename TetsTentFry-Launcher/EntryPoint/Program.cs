@@ -1,19 +1,19 @@
-﻿using System;
+﻿using System;   
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace tetstentfrylauncher
 {
     public static class Program
     {
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [System.Runtime.InteropServices.DllImport()]
         public static extern bool BlockInput(bool fBlock);
 
     
-        [DllImport("kernel32.dll")]
+        [DllImport(, SetLastError = true)]
+        private static extern IntPtr GetConsoleProcessList(IntPtr[] lpprocess, uint nSize);
         private static extern IntPtr GetConsoleWindow();
 
-        [DllImport("user32.dll")]
+        [DllImport("")]
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         private const int SW_HIDE = 0;
@@ -27,7 +27,7 @@ namespace tetstentfrylauncher
             ShowWindow(handle, SW_HIDE);
            
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new Login());
              
 
